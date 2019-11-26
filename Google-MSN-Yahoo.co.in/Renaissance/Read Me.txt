@@ -1,0 +1,29 @@
+CREATE TABLE [tblEmailLog] (
+         [ema_lID] [numeric](18, 0) IDENTITY (1, 1) NOT NULL ,
+         [ema_sName] [varchar] (100) NOT NULL ,
+         CONSTRAINT [PK_tblEmailLog] PRIMARY KEY  CLUSTERED
+         ([ema_lID])  ON [PRIMARY] ,
+         CONSTRAINT [IX_tblEmailLog] UNIQUE  NONCLUSTERED
+         ([ema_sName]
+         )  ON [PRIMARY]
+         ) ON [PRIMARY]
+
+CREATE PROCEDURE [dbo].[sp_itblEmailLog]
+        (@ema_sName as varchar(100)) 
+        as INSERT INTO tblEmailLog(ema_sName)  VALUES 
+        (@ema_sName)
+
+Select * from tblEmailLog order by ema_lID
+
+1.
+Create a login under security (Database)
+login name : email-log
+Password   : emaillog
+confirm pas: emaillog
+
+check enforce password policy
+select database
+server roles : public
+User mapping: select database + database role as db_owner & Public
+status: grant & Enable
+
